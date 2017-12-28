@@ -11,9 +11,11 @@ export class StackpostDetailComponent implements OnInit {
 
   @Input() stackpost: Stackpost;
 
+
   constructor() { }
 
   ngOnInit() {
   }
+
 
 }

@@ -29,7 +29,30 @@
     [class.selected]="post === selectedStackpost"
     (click)="onSelect(post)">
     <span >?id: {{post.question_id}}, score: {{post.score}}</span> {{post.title}} <br>{{post.link}}
+
   </li>
 </ul>
 
 <app-stackpost-detail [stackpost]="selectedStackpost"></app-stackpost-detail>
+
+<h2> add here </h2>
+
+<div>
+<label>Input questionId:
+  <input #questionId />
+</label>
+<!-- (click) passes input value to add() and then clears the input -->
+<button (click)="lookup(questionId.value); questionId.value=''">
+  add
+</button>
+</div>
+
+
+<div>
+<label>Index to delete:
+  <input #index />
+</label>
+<button (click)="delete(index.value); index.value=''">
+  delete
+</button>
+</div>

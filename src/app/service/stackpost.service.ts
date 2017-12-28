@@ -9,15 +9,15 @@ import { catchError, map, tap } from 'rxjs/operators';
 @Injectable()
 export class StackpostService {
 
-  private stackpostsUrl = 'http://localhost:8080/stackItems/';
+  private stackpostUrl = 'http://localhost:8080/stackItems/';
 
   constructor(private http: HttpClient) { }
 
   getStackposts(): Observable<Stackpost[]> {
-    return this.http.get<Stackpost[]>(this.stackpostsUrl)
+    return this.http.get<Stackpost[]>(this.stackpostUrl)
           .pipe(
               catchError(this.handleError('getStackposts', [])
-   );
+   ));
 
   }
 
@@ -26,8 +26,16 @@ getStackPostById(id: number): Observable<Stackpost> {
   const url = `${this.stackpostUrl}/questionLookup/${id}`
   return this.http.get<Stackpost>(url)
       .pipe(
-          catchError(this.handleError<Hero>(`getStackposts questionId=${id}`))
+          catchError(this.handleError<Stackpost>(`getStackposts questionId=${id}`))
   );
+}
+
+deleteStackpost(index: number):Observable<Stackpost>{
+  return this.http.delete<Stackpost>(this.stackpostUrl + "/" + index)
+        .pipe(
+            catchError(this.handleError<Stackpost>('deleteStackpost'))
+    );
+
 }
 
   /**
@@ -41,9 +49,6 @@ private handleError<T> (operation = 'operation', result?: T) {
 
     // TODO: send the error to remote logging infrastructure
     console.error(error); // log to console instead
-
-    // TODO: better job of transforming error for user consumption
-    this.log(`${operation} failed: ${error.message}`);
 
     // Let the app keep running by returning an empty result.
     return of(result as T);

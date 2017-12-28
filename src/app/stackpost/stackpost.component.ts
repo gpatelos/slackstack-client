@@ -29,8 +29,24 @@ export class StackpostComponent implements OnInit {
   }
 
   getStackposts(): void {
-  this._stackpostService.getStackposts()
-            .subscribe(stackposts=> this.stackposts = stackposts);
-}
+    this._stackpostService.getStackposts()
+    .subscribe(stackposts=> this.stackposts = stackposts);
+  }
+
+  lookup(questionId: number): void {
+    if (!questionId) { return; }
+    this._stackpostService.getStackPostById(questionId)
+    .subscribe(stackpost => {
+      this.stackposts.push(stackpost);
+    });
+  }
+
+  delete(index: number): void {
+
+    this._stackpostService.deleteStackpost(index).subscribe();
+    this._stackpostService.getStackposts()
+      .subscribe(stackposts=> this.stackposts = stackposts);
+  }
+
 
 }
