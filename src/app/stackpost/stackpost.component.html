@@ -28,8 +28,7 @@
   <li *ngFor="let post of stackposts"
     [class.selected]="post === selectedStackpost"
     (click)="onSelect(post)">
-    <span >?id: {{post.question_id}}, score: {{post.score}}</span> {{post.title}} <br>{{post.link}}
-
+    <span >?id: {{post.question_id}},</span> {{post.title}} <br><a href="{{post.link}}" target="_blank"> read it on stack overflow</a><br>
   </li>
 </ul>
 
@@ -47,6 +46,15 @@
 </button>
 </div>
 
+<div>
+<label>Add most votes by keyword in title:
+  <input #keyword />
+</label>
+<!-- (click) passes input value to add() and then clears the input -->
+<button (click)="keywordLookup(keyword.value); keyword.value=''">
+  add
+</button>
+</div>
 
 <div>
 <label>Index to delete:

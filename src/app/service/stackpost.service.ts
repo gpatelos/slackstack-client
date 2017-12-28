@@ -30,6 +30,14 @@ getStackPostById(id: number): Observable<Stackpost> {
   );
 }
 
+getStackPostByInTitle(keyword: string): Observable<Stackpost> {
+  const url = `${this.stackpostUrl}/inTitle/${keyword}`
+  return this.http.get<Stackpost>(url)
+      .pipe(
+          catchError(this.handleError<Stackpost>(`getStackposts keyword=${keyword}`))
+  );
+}
+
 deleteStackpost(index: number):Observable<Stackpost>{
   return this.http.delete<Stackpost>(this.stackpostUrl + "/" + index)
         .pipe(

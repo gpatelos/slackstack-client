@@ -40,7 +40,13 @@ export class StackpostComponent implements OnInit {
       this.stackposts.push(stackpost);
     });
   }
-
+  keywordLookup(keyword: string): void {
+    if (!keyword) { return; }
+    this._stackpostService.getStackPostByInTitle(keyword)
+    .subscribe(stackpost => {
+      this.stackposts.push(stackpost);
+    });
+  }
   delete(index: number): void {
 
     this._stackpostService.deleteStackpost(index).subscribe();
