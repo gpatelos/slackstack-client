@@ -1,0 +1,35 @@
+<!-- <div *ngIf="selectedHero">
+
+<h2>{{ selectedStackpost.title| uppercase }} Details</h2>
+
+<div><span>id: </span>{{selectedStackpost.id}}</div>
+<div><span>post title: </span>{{selectedStackpost.title}}</div>
+<div><span>post comment: </span>{{selectedStackpost.comment}}</div>
+
+<div>
+    <label>enter comment:
+      <input [(ngModel)]="selectedStackpost.comment" placeholder="statckpost comment">
+    </label>
+</div>
+</div>
+
+
+
+<h2>My Posts</h2>
+<ul>
+  <li *ngFor="let post of stackposts" (click)="onSelect(post)">
+    <span >{{post.id}}</span> {{post.title}}
+  </li>
+</ul> -->
+
+
+<h2>My Posts</h2>
+<ul >
+  <li *ngFor="let post of stackposts"
+    [class.selected]="post === selectedStackpost"
+    (click)="onSelect(post)">
+    <span >?id: {{post.question_id}}, score: {{post.score}}</span> {{post.title}} <br>{{post.link}}
+  </li>
+</ul>
+
+<app-stackpost-detail [stackpost]="selectedStackpost"></app-stackpost-detail>

@@ -1,0 +1,11 @@
+<div *ngIf="stackpost">
+
+  <h2>{{ stackpost.title | uppercase }} Details</h2>
+  <div><span>questionId: </span>{{stackpost.questionId}}</div>
+  <div>
+    <label>title:
+      <input [(ngModel)]="stackpost.title" placeholder="name">
+    </label>
+  </div>
+
+</div>
